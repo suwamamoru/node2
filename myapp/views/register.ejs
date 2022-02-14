@@ -1,22 +1,41 @@
+<%- include('partials/navigation') %>
 <h1>Register</h1>
 <form>
   <div>
     <label>Name</label>
-    <input type="text">
+    <input id="user-name" type="text">
   </div>
   <div>
     <label>Email Address</label>
-    <input type="text">
+    <input id="email-address" type="text">
   </div>
   <div>
     <label>Password</label>
-    <input type="text">
+    <input id="password" type="text">
   </div>
   <div>
     <label>Confirm Password</label>
-    <input type="text">
+    <input id="confirm-password" type="text">
   </div>
   <div>
-    <input type="button" value="Register">
+    <input id="register-dashboard" type="button" value="Register">
   </div>
 </form>
+
+<script>
+  'use strict'
+  const userName = document.getElementById('user-name');
+  const emailAddress = document.getElementById('email-address');
+  const password = document.getElementById('password');
+  const confirmPassword = document.getElementById('confirm-password');
+  const registerDashboard = document.getElementById('register-dashboard');
+  registerDashboard.addEventListener('click', () => {
+    if(userName.value==='' || emailAddress.value==='' || password.value==='' || confirmPassword.value==='') {
+      return
+    } else if (password.value !== confirmPassword.value){
+      return
+    } else if (password.value.length >= 7) {
+      document.location.href = "/dashboard";
+    }
+  });
+</script>
