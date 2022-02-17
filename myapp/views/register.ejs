@@ -1,25 +1,28 @@
 <%- include('partials/navigation') %>
 <h1>Register</h1>
-<form>
+<form action="../controllers/authController" method="post">
   <div>
     <label>Name</label>
-    <input id="user-name" type="text">
+    <input id="user-name" name="user-name" type="text">
   </div>
   <div>
     <label>Email Address</label>
-    <input id="email-address" type="text">
+    <input id="email-address" name="email-address" type="text">
   </div>
   <div>
     <label>Password</label>
-    <input id="password" type="text">
+    <input id="password" name="password" type="text">
   </div>
   <div>
     <label>Confirm Password</label>
-    <input id="confirm-password" type="text">
+    <input id="confirm-password" name="confirm-password" type="text">
   </div>
   <div>
-    <input id="register-dashboard" type="button" value="Register">
+    <input id="register-dashboard" type="submit" value="Register">
   </div>
+  <ul>
+    <li id="error-list"></li>
+  </ul>
 </form>
 
 <script>
@@ -28,13 +31,23 @@
   const emailAddress = document.getElementById('email-address');
   const password = document.getElementById('password');
   const confirmPassword = document.getElementById('confirm-password');
+  const errorUl = document.getElementById('error-list');
   const registerDashboard = document.getElementById('register-dashboard');
   registerDashboard.addEventListener('click', () => {
+    errorUl.innerHTML = "";
     if(userName.value==='' || emailAddress.value==='' || password.value==='' || confirmPassword.value==='') {
-      return
+      const errorLi = document.createElement('li');
+      errorLi.textContent = "必要事項を全て記入してください。"
+      errorUl.appendChild(errorLi);
     } else if (password.value !== confirmPassword.value){
-      return
-    } else if (password.value.length >= 7) {
+      const errorLi = document.createElement('li');
+      errorLi.textContent = "パスワードが確認用のものと一致していません。"
+      errorUl.appendChild(errorLi);
+    } else if (password.value.length < 7) {
+      const errorLi = document.createElement('li');
+      errorLi.textContent = "パスワードは7文字以上で設定してください。"
+      errorUl.appendChild(errorLi);
+    } else {
       document.location.href = "/dashboard";
     }
   });

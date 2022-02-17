@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const authController = require('../controllers/authController');
+const transitionController = require('../controllers/transitionController');
 
-router.get('/login', authController.respondLogin);
-router.get('/register', authController.respondRegister);
-router.get('/dashboard', authController.respondDashboard);
+router.get('/login', transitionController.respondLogin);
+router.get('/register', transitionController.respondRegister);
+router.get('/dashboard', transitionController.respondDashboard);
 
 module.exports = router;
