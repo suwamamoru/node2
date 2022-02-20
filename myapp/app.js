@@ -22,6 +22,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', router);
 
+// auth process
+const auth = require('./routes/auth');
+app.use('/dashboard', auth);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

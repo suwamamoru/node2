@@ -5,7 +5,3 @@ exports.respondLogin = (req, res) => {
 exports.respondRegister = (req, res) => {
   res.render('register');
 };
-
-exports.respondDashboard = (req, res) => {
-  res.render('dashboard');
-};

@@ -1,1 +1,3 @@
-console.log('読み込みに成功しました')
+exports.respondDashboard = (req, res) => {
+  res.render('/dashboard', { name: req.body.name } );
+};

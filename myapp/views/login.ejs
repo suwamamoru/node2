@@ -1,40 +1,19 @@
 <%- include('partials/navigation') %>
 <h1>Login</h1>
-<form action="../controllers/authController" method="post">
+<form action="/dashboard" method="post">
   <div>
     <label>Name</label>
-    <input  id="user-name" name="user-name" type="text">
+    <input type="text" name="name">
   </div>
   <div>
     <label>Password</label>
-    <input  id="password" name="password" type="text">
+    <input type="text" name="password">
   </div>
   <div>
     <input type="checkbox">Remember Me
   </div>
   <div>
-    <input id="login-dashboard" type="submit" value="Login">
+    <input type="submit" value="Login">
     <a href="">Forget Your Password?</a>
   </div>
-  <ul>
-    <li id="error-list"></li>
-  </ul>
 </form>
-
-<script>
-  'use strict'
-  const userName = document.getElementById('user-name');
-  const password = document.getElementById('password');
-  const errorUl = document.getElementById('error-list');
-  const loginDashboard = document.getElementById('login-dashboard');
-  loginDashboard.addEventListener('click', () => {
-    errorUl.innerHTML = "";
-    if(userName.value==='' || password.value==='') {
-      const errorLi = document.createElement('li');
-      errorLi.textContent = "必要事項を全て記入してください。"
-      errorUl.appendChild(errorLi);
-    } else {
-      document.location.href = "/dashboard";
-    }
-  });
-</script>

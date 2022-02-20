@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const transitionController = require('../controllers/transitionController');
+const authController = require('../controllers/authController');
 
-router.get('/login', transitionController.respondLogin);
-router.get('/register', transitionController.respondRegister);
-router.get('/dashboard', transitionController.respondDashboard);
+router.post('/dashboard', authController.respondDashboard);
 
 module.exports = router;
