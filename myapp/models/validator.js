@@ -1,16 +1,6 @@
-const { check } = require("express-validator");
+const { check, validationResult } = require("express-validator");
 
-exports.loginValidator = (req, res, next) => {
-  return [
-    check("email")
-      .isEmail()
-      .notEmpty(),
-    check("password")
-      .isLength({ min: 7 })
-  ];
-};
-
-exports.registerValidator = (req, res, next) => {
+const validator = (req, res) => {
   return [
     check("name")
       .notEmpty(),
@@ -26,5 +16,7 @@ exports.registerValidator = (req, res, next) => {
         }
         return true;
       })
-  ];
-};
+  ]
+}
+
+module.exports = { validator };
