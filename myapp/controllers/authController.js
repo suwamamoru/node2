@@ -1,40 +1,21 @@
 const { validationResult } = require("express-validator");
 
-exports.respondLogin = (req, res) => {
+exports.getLoginPage = (req, res) => {
   res.render('login');
 };
 
-exports.respondRegister = (req, res) => {
-  res.render('register', { errorMessage: '' });
+exports.getRegisterPage = (req, res) => {
+  res.render('register', { errorMessage: undefined });
 };
 
-exports.respondDashboard = (req, res) => {
-  if(req.headers.referer !== 'http://localhost:3000/login') {
-    const errors = validationResult(req);
-    if(!errors.isEmpty()) {
-      const newErrors = {};
-      errors.errors.forEach((err, index) => {
-        if (err.param.includes("name")) {
-          newErrors.name = "Nameを入力してください。";
-        } else if (err.param.includes("email")) {
-          newErrors.email = "有効なEmail Addressを入力してください。";
-        } else if (err.param.includes("password")) {
-          newErrors.password = "Passwordは7文字以上で入力してください。";
-        } else if (err.param.includes("confirmPassword")) {
-          newErrors.confirmPassword = "PasswordとConfirm Passwordを一致させてください。";
-        }
-      });
-      res.render('register', {
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        confirmPassword: req.body.confirmPassword,
-        errorMessage: newErrors
-      });
-    }
+exports.login = (req, res) => {
+  res.render('loginDashboard', { email: req.body.email });
+}
+
+exports.register = (req, res) => {
+  const errors = validationResult(req);
+  if(!errors.isEmpty()) {
+    res.status(422).render('register', { errorMessage: errors });
   }
-  res.render('dashboard', {
-    email: req.body.email,
-    password: req.body.password
-  });
+  res.render('registerDashboard', { email: req.body.email });
 };

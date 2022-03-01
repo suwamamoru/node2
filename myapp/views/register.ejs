@@ -1,6 +1,6 @@
 <%- include('partials/navigation') %>
 <h1>Register</h1>
-<form action="/dashboard" method="post">
+<form action="/registerDashboard" method="post">
   <div>
     <label>Name</label>
     <input type="text" name="name">
@@ -23,10 +23,12 @@
 </form>
 <% if(errorMessage) { %>
   <ul>
-      <% for (let n in errorMessage) { %>
-      <li>
-          <%= errorMessage[n] %>
-      </li>
-      <% } %>
+      <% errorMessage.errors.forEach((error) => { %>
+        <% if(error.msg !== 'Invalid value') { %>
+          <li>
+            <%= error.msg %>
+          </li>
+        <% } %>
+      <% }); %>
   </ul>
 <% } %>
