@@ -9,7 +9,7 @@ exports.getRegisterPage = (req, res) => {
 };
 
 exports.login = (req, res) => {
-  res.render('loginDashboard', { email: req.body.email });
+  res.render('dashboard', { email: req.body.email });
 }
 
 exports.register = (req, res) => {
@@ -17,5 +17,5 @@ exports.register = (req, res) => {
   if(!errors.isEmpty()) {
     res.status(422).render('register', { errorMessage: errors });
   }
-  res.render('registerDashboard', { email: req.body.email });
+  res.render('dashboard', { email: req.body.email });
 };
