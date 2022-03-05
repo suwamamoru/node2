@@ -1,4 +1,4 @@
-const { validationResult } = require("express-validator");
+const { validationResult } = require('express-validator');
 
 exports.getLoginPage = (req, res) => {
   res.render('login');

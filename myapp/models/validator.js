@@ -1,18 +1,18 @@
-const { check, validationResult } = require("express-validator");
+const { check, validationResult } = require('express-validator');
 
 const registerValidator = (req, res) => {
   return [
-    check("name")
+    check('name')
       .notEmpty()
       .withMessage('Nameを入力してください。'),
-    check("email")
+    check('email')
       .isEmail()
       .notEmpty()
       .withMessage('有効なEmail Addressを入力してください。'), 
-    check("password")
+    check('password')
       .isLength({ min: 7 })
       .withMessage('Passwordは7文字以上で入力してください。'),
-    check("confirmPassword")
+    check('confirmPassword')
       .custom((value, { req }) => {
         if(req.body.password !== req.body.confirmPassword) {
           return false;

@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const authController = require('../controllers/authController');
-const { registerValidator } = require('../models/validator');
+const authPages = require('./auth');
+const navPages = require('./nav');
 
-router.get('/login', authController.getLoginPage);
-router.get('/register', authController.getRegisterPage);
-router.post('/loginDashboard', authController.login);
-router.post('/registerDashboard', registerValidator(), authController.register);
+router.use('/', navPages);
+router.use('/', authPages);
 
 module.exports = router;
