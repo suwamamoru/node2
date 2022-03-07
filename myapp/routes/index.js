@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const authPages = require('./auth');
+const auth = require('./auth');
 
-router.get('/', function () {});
-router.use('/', authPages);
+router.use('/auth', auth);
 
 module.exports = router;
